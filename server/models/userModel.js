@@ -25,7 +25,7 @@ const userSchema = new Schema({
 //     });
 // });
 
-// UserSchema.methods.validatePassword = (input, next) => {
+// userSchema.methods.validatePassword = (input, next) => {
 //     const user = this;
 //     bcrypt.compare(input, user.password, (err, match) => {
 //         if (err) return next(err);

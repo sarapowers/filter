@@ -7,4 +7,4 @@ const interestSchema = new Schema({
     sources: Array,
 })
 
-modeule.exports = mongoose.model('Interests', interestSchema);
+module.exports = mongoose.model('Interests', interestSchema);

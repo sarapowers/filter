@@ -4,7 +4,8 @@ const webpack= require('webpack');
 module.exports = {
     entry: './client/index.js',
     output: {
-        path: path.resolve(__dirname + '/build'),
+        path: path.resolve(__dirname, 'build'),
+        publicPath: '/',
         filename: 'bundle.js',
     },
     mode: process.env.NODE_ENV,
@@ -25,13 +26,38 @@ module.exports = {
         ]
     },
     devServer: {
-        compress: true,
-        hot: true,
+      host: 'localhost',
+      port: 8080,
+        // match the output path
+      contentBase: path.resolve(__dirname, 'build'),
+    // enable HMR on the devServer
+      hot: true,
+    // match the output 'publicPath'
+     publicPath: '/',
+    // fallback to root for other urls
+      historyApiFallback: true,
+      inline: true,
         port: 8080,
-        publicPath: '/build/',
+        publicPath: '/',
+        headers: { 'Access-Control-Allow-Origin': '*' },
         proxy: {
-            '/': 'http://localhost:3000'
-      },
-      },
-    
-}
+            '**' : {
+                target: 'http://[::1]:3000',
+                secure:false,
+                changeOrigin: true,
+            },
+          '/user/**': {
+              target: 'http://localhost:3000',
+            //   sercure: false,
+          },
+          '/news/**': {
+              target: 'http://localhost:3000',
+            //   sercure: false,
+          },
+          '/interests/**': {
+              target: 'http://localhost:3000',
+            //   sercure: false,
+            },
+        }
+        }
+    }
