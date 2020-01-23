@@ -43,9 +43,6 @@ app.use((req, res, next) => {
   app.use('/build', express.static(path.join(__dirname, '../build')));
 // };
 
-// app.get('/news', (req, res) => {
-//   res.send('made it!')
-// })
 app.use('/user', userRouter);
 app.use('/interests', interestRouter);
 

@@ -20,23 +20,22 @@ class LogIn extends Component {
       event.preventDefault();
         fetch('/user/login', {
         method: 'POST',
-        body: { email: this.state.email, password: this.state.password },
+        body: JSON.stringify({ email: this.state.email, password: this.state.password }),
         headers: {'Content-Type': 'application/json'}
         })
-        // .then(data => data.json())
-        // .then(console.log(this.state))
-        // .then(console.log(data))
-        .catch((err) => console.log(err));
+        .then(res => res.json())
+        .catch((err) => console.log(err)
+        .then(res => console.log('Succes! response: ', res)));
     }
     
     render() {
         return (<section className="logInMain">
             <div className="logInDiv">
-                <form className="logIn" id="logIn">
+                <form className="logIn" id="logIn" onSubmit={this.submitLogIn}>
                 <input type="text" name="email" onChange={this.handleChangeLogIn}></input><br></br>
                 <input type="password" name="password" onChange={this.handleChangeLogIn}></input>
+                <input type="submit" value="submit"></input>
                 </form>
-                <button type="submit" onclick={this.submitLogIn}>submit</button>
             </div>
         </section>)
     }

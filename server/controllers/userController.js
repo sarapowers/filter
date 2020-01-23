@@ -27,7 +27,7 @@ userController.isLoggedIn = (req, res, next) => {
 
 userController.logIn = (req, res, next) => {
     console.log('in the authenticate funciton');
-    console.log(req.body);
+    console.log(req.body.email);
    passport.authenticate('local', (err, user, info) => {
     if (err) { return next(err) }
     if (!user) {
